@@ -1,8 +1,8 @@
 "use client";
 import { Target, Brain, BookOpen, TrendingUp, MessageCircle, BarChart3, Shield } from "lucide-react";
-import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { useEffect, useRef } from "react";
 
 const features = [
   {
@@ -48,124 +48,159 @@ const featureHighlights = [
   { label: "Coach Interactions / day", value: "900K" },
 ];
 
+const ScrollReveal = ({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) => {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("inview");
+        }
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -80px 0px" }
+    );
+
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className="scroll-fade"
+      style={{ transitionDelay: `${delay}ms` }}
+    >
+      {children}
+    </div>
+  );
+};
+
 const Features = () => {
   return (
-    <section id="features" className="relative overflow-hidden py-28 px-6">
+    <section id="features" className="relative overflow-hidden py-32 px-6 pattern-grid">
+      {/* Enhanced background with multiple layers */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,hsla(173,80%,40%,0.12),transparent_55%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,hsla(221,69%,33%,0.12),transparent_60%)]" />
-        <div className="absolute inset-0 [mask-image:linear-gradient(to_bottom,black,transparent)]">
-          <div className="h-full w-full bg-[linear-gradient(to_right,transparent,hsla(0,0%,100%,0.05)_1px,transparent_1px),linear-gradient(to_bottom,transparent,hsla(0,0%,100%,0.05)_1px,transparent_1px)] bg-[size:18px_18px]" />
+        <div className="absolute inset-0 artistic-bg" />
+        <div className="absolute inset-0 artistic-overlay animate-gradient" />
+        <div className="absolute inset-0 pattern-dots opacity-20" />
+        <div className="absolute inset-0 [mask-image:linear-gradient(to_bottom,black,transparent_80%)]">
+          <div className="h-full w-full pattern-grid opacity-30" />
         </div>
       </div>
 
       <div className="container mx-auto relative z-10">
-        <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
-          <Badge className="mb-4 bg-white/10 text-sm font-medium text-green/80 backdrop-blur-sm">
-            The XPENSIFY Advantage
-          </Badge>
-          <h2 className="text-4xl md:text-5xl font-bold text-green/90">
-            Everything You Need to
-            <span className="block gradient-text mt-3">Master Your Money</span>
-          </h2>
-          <p className="mt-6 text-lg md:text-xl text-green/70">
-            Seven intelligent modules, beautifully integrated to turn financial anxiety into confident progress.
-          </p>
-        </div>
+        <ScrollReveal>
+          <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
+            <Badge className="mb-6 bg-[hsl(var(--glass-bg))] backdrop-blur-xl border border-[hsl(var(--glass-border))] text-sm font-semibold text-foreground/90 px-4 py-1.5 shadow-[var(--shadow-soft)]">
+              The XPENSIFY Advantage
+            </Badge>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground/95 leading-tight">
+              Everything You Need to
+              <span className="block gradient-text mt-3">Master Your Money</span>
+            </h2>
+            <p className="mt-6 text-lg md:text-xl text-foreground/75 max-w-2xl leading-relaxed">
+              Seven intelligent modules, beautifully integrated to turn financial anxiety into confident progress.
+            </p>
+          </div>
+        </ScrollReveal>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mt-16">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mt-20">
           {features.map((feature, index) => (
-            <Card
-              key={feature.title}
-              className="group relative overflow-hidden border border-white/10 bg-card/70 backdrop-blur-xl transition-all duration-300 hover:border-primary/40 hover:shadow-[0_20px_60px_rgba(22,172,186,0.2)]"
-              style={{ animationDelay: `${index * 0.08}s` }}
-            >
-              <div className="pointer-events-none absolute -top-20 right-0 h-40 w-40 rounded-full bg-primary/20 blur-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-              <CardHeader className="relative pb-2">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--gradient-accent)] shadow-[var(--shadow-glow)] transition-transform duration-300 group-hover:scale-110">
-                  <feature.icon className="block gradient-text mt-3" />
-                </div>
-                <CardTitle className="mt-4 text-xl font-semibold text-green/90">
-                  {feature.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="relative">
-                <p className="text-base text-green/65">{feature.description}</p>
-              </CardContent>
-            </Card>
+            <ScrollReveal key={feature.title} delay={index * 100}>
+              <Card className="glass-card group relative overflow-hidden h-full hover:scale-[1.02] transition-all duration-500">
+                {/* Animated glow on hover */}
+                <div className="pointer-events-none absolute -top-24 -right-24 h-48 w-48 rounded-full bg-[hsl(var(--green-glow))]/20 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                <div className="pointer-events-none absolute -bottom-24 -left-24 h-48 w-48 rounded-full bg-[hsl(var(--secondary))]/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                
+                <CardHeader className="relative pb-3">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--gradient-accent)] shadow-[var(--shadow-glow)] transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-[var(--shadow-intense)]">
+                    <feature.icon className="w-7 h-7 text-primary-green" />
+                  </div>
+                  <CardTitle className="mt-5 text-xl font-bold text-foreground/95 group-hover:text-[hsl(var(--green-glow))] transition-colors duration-300">
+                    {feature.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="relative">
+                  <p className="text-base text-foreground/70 leading-relaxed">{feature.description}</p>
+                </CardContent>
+              </Card>
+            </ScrollReveal>
           ))}
         </div>
 
-        <div className="mt-20 rounded-3xl border border-white/10 bg-card/60 backdrop-blur-2xl p-10 shadow-[0_30px_80px_rgba(15,23,42,0.35)]">
-          <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
-            <div className="space-y-6">
-              <Badge className="bg-primary/20 text-primary-foreground/90">
-                Real-time XPENSIFY Dashboard
-              </Badge>
-              <h3 className="text-3xl font-semibold text-green/90">
-                Insights that feel like magic, yet rooted in data you can trust.
-              </h3>
-              <p className="text-green/70">
-                From the first milestone to long-term wealth strategies, XPENSIFY connects your progress into one intuitive
-                workspace. Visualize the path forward with AI forecasts, momentum analytics, and a compassionate coach.
-              </p>
-              <div className="flex flex-wrap gap-6">
-                {featureHighlights.map((highlight) => (
-                  <div key={highlight.label}>
-                    <p className="text-2xl font-semibold text-primary">
-                      {highlight.value}
-                    </p>
-                    <p className="text-sm uppercase tracking-widest text-green/60">
-                      {highlight.label}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="relative w-full overflow-hidden rounded-3xl border border-primary/10 bg-card/80 p-6 shadow-[0_40px_80px_rgba(22,172,186,0.15)]">
-              <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-br from-primary/30 via-transparent to-secondary/30 opacity-80" />
-              <div className="relative space-y-6">
-                <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-lg">
-                  <div className="flex items-center justify-between text-sm text-green/70">
-                    <span>Goal Progress</span>
-                    <span>82%</span>
-                  </div>
-                  <div className="mt-4 h-2 w-full rounded-full bg-white/10">
-                    <div className="h-full w-[82%] rounded-full bg-[var(--gradient-accent)]" />
-                  </div>
-                </div>
-                <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-lg">
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <p className="text-sm uppercase tracking-wide text-green/60">AI Coach</p>
-                      <p className="mt-2 text-lg font-semibold text-green/90">“Allocate 15% to your emergency fund.”</p>
+        <ScrollReveal delay={700}>
+          <div className="mt-24 rounded-3xl border border-[hsl(var(--glass-border))] bg-[hsl(var(--glass-bg))] backdrop-blur-2xl p-10 md:p-12 shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-intense)] transition-all duration-500">
+            <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+              <div className="space-y-6 animate-fade-in-up">
+                <Badge className="bg-[hsl(var(--green-glow))/0.2] text-[hsl(var(--green-glow))] border border-[hsl(var(--green-glow))/0.3] font-semibold px-4 py-1.5">
+                  Real-time XPENSIFY Dashboard
+                </Badge>
+                <h3 className="text-3xl md:text-4xl font-bold text-foreground/95 leading-tight">
+                  Insights that feel like magic, yet rooted in data you can trust.
+                </h3>
+                <p className="text-foreground/75 text-lg leading-relaxed">
+                  From the first milestone to long-term wealth strategies, XPENSIFY connects your progress into one intuitive
+                  workspace. Visualize the path forward with AI forecasts, momentum analytics, and a compassionate coach.
+                </p>
+                <div className="flex flex-wrap gap-8 pt-4">
+                  {featureHighlights.map((highlight, idx) => (
+                    <div key={highlight.label} className="animate-scale-in" style={{ animationDelay: `${idx * 100}ms` }}>
+                      <p className="text-3xl md:text-4xl font-bold gradient-text">
+                        {highlight.value}
+                      </p>
+                      <p className="text-xs uppercase tracking-[0.2em] text-foreground/60 mt-1 font-medium">
+                        {highlight.label}
+                      </p>
                     </div>
-                    <span className="rounded-full bg-primary/20 px-3 py-1 text-xs text-primary-foreground/90">
-                      Live suggestion
-                    </span>
-                  </div>
+                  ))}
                 </div>
-                <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-lg">
-                  <p className="text-sm uppercase tracking-wide text-green/60">Wellness Score</p>
-                  <div className="mt-4 flex items-end gap-3">
-                    <span className="text-4xl font-semibold text-primary">92</span>
-                    <span className="text-sm text-green/60">+7 this week</span>
+              </div>
+              <div className="relative w-full overflow-hidden rounded-3xl border border-[hsl(var(--glass-border))] bg-[hsl(var(--glass-bg))] p-8 shadow-[var(--shadow-elegant)]">
+                <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-br from-[hsl(var(--green-glow))/0.15] via-transparent to-[hsl(var(--secondary))/0.15] opacity-60" />
+                <div className="relative space-y-6">
+                  <div className="rounded-2xl border border-[hsl(var(--glass-border))] bg-[hsl(var(--glass-bg))] p-6 backdrop-blur-xl shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-elegant)] transition-all duration-300">
+                    <div className="flex items-center justify-between text-sm text-foreground/80 font-medium mb-4">
+                      <span>Goal Progress</span>
+                      <span className="text-[hsl(var(--green-glow))] font-bold">82%</span>
+                    </div>
+                    <div className="mt-4 h-2.5 w-full rounded-full bg-foreground/10 overflow-hidden">
+                      <div className="h-full w-[82%] rounded-full bg-[var(--gradient-accent)] shadow-[var(--shadow-glow)] animate-shimmer" />
+                    </div>
                   </div>
-                  <div className="mt-6 grid grid-cols-6 gap-2 text-xs text-green/50">
-                    {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
-                      <div
-                        key={day}
-                        className="h-12 rounded-md bg-gradient-to-t from-primary/20 via-primary/10 to-transparent"
-                      >
-                        <span className="flex h-full items-end justify-center pb-1">{day}</span>
+                  <div className="rounded-2xl border border-[hsl(var(--glass-border))] bg-[hsl(var(--glass-bg))] p-6 backdrop-blur-xl shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-elegant)] transition-all duration-300">
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="flex-1">
+                        <p className="text-xs uppercase tracking-wider text-foreground/60 font-semibold mb-2">AI Coach</p>
+                        <p className="text-lg font-semibold text-foreground/95 leading-relaxed">"Allocate 15% to your emergency fund."</p>
                       </div>
-                    ))}
+                      <span className="rounded-full bg-[hsl(var(--green-glow))/0.2] border border-[hsl(var(--green-glow))/0.4] px-3 py-1.5 text-xs text-[hsl(var(--green-glow))] font-semibold whitespace-nowrap">
+                        Live suggestion
+                      </span>
+                    </div>
+                  </div>
+                  <div className="rounded-2xl border border-[hsl(var(--glass-border))] bg-[hsl(var(--glass-bg))] p-6 backdrop-blur-xl shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-elegant)] transition-all duration-300">
+                    <p className="text-xs uppercase tracking-wider text-foreground/60 font-semibold mb-4">Wellness Score</p>
+                    <div className="flex items-end gap-3 mb-6">
+                      <span className="text-5xl font-bold gradient-text">92</span>
+                      <span className="text-sm text-[hsl(var(--green-glow))] font-medium pb-1">+7 this week</span>
+                    </div>
+                    <div className="grid grid-cols-6 gap-2 text-xs text-foreground/50">
+                      {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day, idx) => (
+                        <div
+                          key={day}
+                          className="h-14 rounded-lg bg-gradient-to-t from-[hsl(var(--green-glow))/0.25] via-[hsl(var(--green-glow))/0.15] to-transparent border border-[hsl(var(--glass-border))] flex items-end justify-center pb-2 hover:from-[hsl(var(--green-glow))/0.35] transition-all duration-300"
+                        >
+                          <span>{day}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );
