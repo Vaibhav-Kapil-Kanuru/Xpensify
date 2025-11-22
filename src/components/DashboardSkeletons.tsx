@@ -1,23 +1,11 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card } from "@/components/ui/card";
+import DashboardNav from "@/components/DashboardNav";
 
 export function DashboardSkeleton() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-primary/5 to-accent/10">
-      {/* Nav Skeleton */}
-      <div className="glass-card sticky top-0 z-50 backdrop-blur-lg border-b border-border/50">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <Skeleton className="h-8 w-40" />
-            <div className="hidden md:flex items-center gap-1">
-              {[1, 2, 3, 4, 5].map((i) => (
-                <Skeleton key={i} className="h-9 w-24" />
-              ))}
-            </div>
-            <Skeleton className="h-9 w-24" />
-          </div>
-        </div>
-      </div>
+    <div className="min-h-screen mac-bg">
+      <DashboardNav />
 
       <main className="container mx-auto px-4 py-8">
         {/* Welcome Section */}
@@ -27,7 +15,7 @@ export function DashboardSkeleton() {
         </div>
 
         {/* Financial Wellness Score */}
-        <Card className="glass-card p-6 mb-6 animate-fade-in">
+        <Card className="mac-card p-6 mb-6 animate-fade-in">
           <div className="flex items-center justify-between mb-4">
             <Skeleton className="h-7 w-64" />
             <Skeleton className="h-10 w-24" />
@@ -38,7 +26,7 @@ export function DashboardSkeleton() {
 
         <div className="grid md:grid-cols-2 gap-6 mb-6">
           {/* Today's Focus */}
-          <Card className="glass-card p-6 animate-fade-in">
+          <Card className="mac-card p-6 animate-fade-in">
             <div className="flex items-center gap-3 mb-4">
               <Skeleton className="w-10 h-10 rounded-full" />
               <Skeleton className="h-6 w-32" />
@@ -48,7 +36,7 @@ export function DashboardSkeleton() {
           </Card>
 
           {/* Learning Streak */}
-          <Card className="glass-card p-6 animate-fade-in">
+          <Card className="mac-card p-6 animate-fade-in">
             <div className="flex items-center gap-3 mb-4">
               <Skeleton className="w-10 h-10 rounded-full" />
               <Skeleton className="h-6 w-32" />
@@ -62,7 +50,7 @@ export function DashboardSkeleton() {
         </div>
 
         {/* Active Goals */}
-        <Card className="glass-card p-6 mb-6 animate-fade-in">
+        <Card className="mac-card p-6 mb-6 animate-fade-in">
           <div className="flex items-center justify-between mb-4">
             <Skeleton className="h-7 w-32" />
             <Skeleton className="h-9 w-28" />
@@ -70,7 +58,7 @@ export function DashboardSkeleton() {
           
           <div className="space-y-4">
             {[1, 2].map((i) => (
-              <Card key={i} className="p-4 glass-card">
+              <Card key={i} className="p-4 mac-card">
                 <div className="flex items-start justify-between mb-2">
                   <div>
                     <Skeleton className="h-5 w-48 mb-1" />
@@ -86,7 +74,7 @@ export function DashboardSkeleton() {
         </Card>
 
         {/* Next Milestone */}
-        <Card className="glass-card p-6 animate-fade-in">
+        <Card className="mac-card p-6 animate-fade-in">
           <div className="flex items-center gap-3 mb-4">
             <Skeleton className="w-10 h-10 rounded-full" />
             <Skeleton className="h-6 w-32" />

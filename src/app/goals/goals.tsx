@@ -203,21 +203,20 @@ const Goals: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-primary/5 to-accent/10">
-        <div className="w-16 h-16 border-4 border-accent/30 border-t-accent rounded-full animate-spin" />
+      <div className="min-h-screen flex items-center justify-center mac-bg">
+        <div className="w-16 h-16 border-4 border-blue-300 border-t-blue-600 rounded-full animate-spin" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-primary/5 to-accent/10">
+    <div className="min-h-screen mac-bg">
       <DashboardNav />
-
-      <main className="container mx-auto px-4 py-8">
+      <main className="container mx-auto px-4 py-8 pt-24">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-3xl font-bold gradient-text mb-2">My Goals</h1>
-            <p className="text-muted-foreground">Track your financial milestones and achievements</p>
+            <h1 className="text-3xl font-bold mac-text-primary mb-2">My Goals</h1>
+            <p className="mac-text-secondary">Track your financial milestones and achievements</p>
           </div>
           
           <Dialog open={showCreateDialog} onOpenChange={setShowCreateDialog}>
@@ -227,9 +226,9 @@ const Goals: React.FC = () => {
                 Create Goal
               </Button>
             </DialogTrigger>
-            <DialogContent className="glass-card max-w-2xl">
+            <DialogContent className="mac-card max-w-2xl">
               <DialogHeader>
-                <DialogTitle className="text-2xl gradient-text">Create New Goal</DialogTitle>
+                <DialogTitle className="text-2xl mac-text-primary">Create New Goal</DialogTitle>
               </DialogHeader>
               
               <div className="space-y-4 mt-4">
@@ -349,10 +348,10 @@ const Goals: React.FC = () => {
         </div>
 
         {goals.length === 0 ? (
-          <Card className="glass-card p-12 text-center animate-fade-in">
-            <Target className="w-16 h-16 text-accent mx-auto mb-4" />
-            <h2 className="text-2xl font-bold mb-2">No Goals Yet</h2>
-            <p className="text-muted-foreground mb-6">
+          <Card className="mac-card p-12 text-center animate-fade-in">
+            <Target className="w-16 h-16 text-blue-600 mx-auto mb-4" />
+            <h2 className="text-2xl font-bold mb-2 mac-text-primary">No Goals Yet</h2>
+            <p className="mac-text-secondary mb-6">
               Start your financial journey by creating your first goal
             </p>
             <Button variant="default" size="lg" onClick={() => setShowCreateDialog(true)}>
@@ -374,31 +373,31 @@ const Goals: React.FC = () => {
                 return (
                   <Card 
                     key={goal.id}
-                    className={`glass-card p-4 cursor-pointer transition-all hover:border-accent/50 ${
-                      selectedGoal?.id === goal.id ? 'border-accent' : ''
+                    className={`mac-card p-4 cursor-pointer transition-all ${
+                      selectedGoal?.id === goal.id ? 'border-blue-500' : ''
                     }`}
                     onClick={() => handleSelectGoal(goal)}
                   >
                     <div className="flex items-start justify-between mb-2">
                       <div className="flex-1">
-                        <h3 className="font-semibold">{goal.title}</h3>
-                        <p className="text-sm text-muted-foreground capitalize">{goal.category}</p>
+                        <h3 className="font-semibold mac-text-primary">{goal.title}</h3>
+                        <p className="text-sm mac-text-secondary capitalize">{goal.category}</p>
                       </div>
                       {goal.ai_completion_probability && (
                         <div className="text-right">
-                          <div className="text-sm font-medium text-accent">
+                          <div className="text-sm font-medium text-blue-600">
                             {goal.ai_completion_probability}%
                           </div>
-                          <div className="text-xs text-muted-foreground">likely</div>
+                          <div className="text-xs mac-text-tertiary">likely</div>
                         </div>
                       )}
                     </div>
                     <Progress value={progress} className="h-2 mb-2" />
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-muted-foreground">
+                      <span className="mac-text-secondary">
                         {profile?.currency || 'USD'} {currentAmount.toLocaleString()}
                       </span>
-                      <span className="font-medium">
+                      <span className="font-medium mac-text-primary">
                         {profile?.currency || 'USD'} {targetAmount.toLocaleString()}
                       </span>
                     </div>
@@ -411,15 +410,15 @@ const Goals: React.FC = () => {
             <div className="lg:col-span-2">
               {selectedGoal ? (
                 <div className="space-y-6 animate-fade-in">
-                  <Card className="glass-card p-6">
+                  <Card className="mac-card p-6">
                     <div className="flex items-start justify-between mb-4">
                       <div>
-                        <h2 className="text-2xl font-bold mb-2">{selectedGoal.title}</h2>
-                        <p className="text-muted-foreground">{selectedGoal.description}</p>
+                        <h2 className="text-2xl font-bold mb-2 mac-text-primary">{selectedGoal.title}</h2>
+                        <p className="mac-text-secondary">{selectedGoal.description}</p>
                       </div>
                       <div className="text-right">
                         {selectedGoal.ai_completion_probability && (
-                          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/20 text-accent text-sm font-medium mb-2">
+                          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-blue-600 text-sm font-medium mb-2">
                             <TrendingUp className="w-4 h-4" />
                             {selectedGoal.ai_completion_probability}% Success Rate
                           </div>
@@ -429,29 +428,29 @@ const Goals: React.FC = () => {
 
                     <div className="grid grid-cols-3 gap-4 mb-4">
                       <div className="flex items-center gap-2">
-                        <DollarSign className="w-4 h-4 text-muted-foreground" />
+                        <DollarSign className="w-4 h-4 mac-text-tertiary" />
                         <div>
-                          <div className="text-xs text-muted-foreground">Target</div>
-                          <div className="font-semibold">
+                          <div className="text-xs mac-text-tertiary">Target</div>
+                          <div className="font-semibold mac-text-primary">
                             {profile?.currency || 'USD'} {Number(selectedGoal.target_amount || 0).toLocaleString()}
                           </div>
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
-                        <TrendingUp className="w-4 h-4 text-muted-foreground" />
+                        <TrendingUp className="w-4 h-4 mac-text-tertiary" />
                         <div>
-                          <div className="text-xs text-muted-foreground">Current</div>
-                          <div className="font-semibold">
+                          <div className="text-xs mac-text-tertiary">Current</div>
+                          <div className="font-semibold mac-text-primary">
                             {profile?.currency || 'USD'} {Number(selectedGoal.current_amount).toLocaleString()}
                           </div>
                         </div>
                       </div>
                       {selectedGoal.target_date && (
                         <div className="flex items-center gap-2">
-                          <Calendar className="w-4 h-4 text-muted-foreground" />
+                          <Calendar className="w-4 h-4 mac-text-tertiary" />
                           <div>
-                            <div className="text-xs text-muted-foreground">Due</div>
-                            <div className="font-semibold">
+                            <div className="text-xs mac-text-tertiary">Due</div>
+                            <div className="font-semibold mac-text-primary">
                               {new Date(selectedGoal.target_date).toLocaleDateString()}
                             </div>
                           </div>
@@ -466,26 +465,26 @@ const Goals: React.FC = () => {
                   </Card>
 
                   <div>
-                    <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-                      <Sparkles className="w-5 h-5 text-accent" />
+                    <h3 className="text-xl font-semibold mb-4 flex items-center gap-2 mac-text-primary">
+                      <Sparkles className="w-5 h-5 text-blue-600" />
                       Milestones
                     </h3>
                     
                     {loadingMilestones ? (
-                      <Card className="glass-card p-8 text-center">
-                        <div className="w-12 h-12 border-4 border-accent/30 border-t-accent rounded-full animate-spin mx-auto" />
+                      <Card className="mac-card p-8 text-center">
+                        <div className="w-12 h-12 border-4 border-blue-300 border-t-blue-600 rounded-full animate-spin mx-auto" />
                       </Card>
                     ) : milestones.length === 0 ? (
-                      <Card className="glass-card p-8 text-center">
-                        <Clock className="w-12 h-12 text-muted-foreground mx-auto mb-3" />
-                        <p className="text-muted-foreground">No milestones yet</p>
+                      <Card className="mac-card p-8 text-center">
+                        <Clock className="w-12 h-12 mac-text-tertiary mx-auto mb-3" />
+                        <p className="mac-text-secondary">No milestones yet</p>
                       </Card>
                     ) : (
                       <div className="space-y-3">
                         {milestones.map((milestone, index) => (
                           <Card 
                             key={milestone.id}
-                            className={`glass-card p-4 transition-all ${
+                            className={`mac-card p-4 transition-all ${
                               milestone.completed ? 'opacity-60' : ''
                             }`}
                           >
@@ -494,29 +493,29 @@ const Goals: React.FC = () => {
                                 onClick={() => toggleMilestone(milestone)}
                                 className={`mt-1 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${
                                   milestone.completed
-                                    ? 'bg-accent border-accent'
-                                    : 'border-muted-foreground hover:border-accent'
+                                    ? 'bg-blue-600 border-blue-600'
+                                    : 'border-gray-300 hover:border-blue-600'
                                 }`}
                               >
-                                {milestone.completed && <CheckCircle2 className="w-4 h-4 text-background" />}
+                                {milestone.completed && <CheckCircle2 className="w-4 h-4 text-white" />}
                               </button>
                               
                               <div className="flex-1">
                                 <div className="flex items-start justify-between mb-1">
-                                  <h4 className={`font-semibold ${milestone.completed ? 'line-through' : ''}`}>
+                                  <h4 className={`font-semibold mac-text-primary ${milestone.completed ? 'line-through' : ''}`}>
                                     {index + 1}. {milestone.title}
                                   </h4>
                                   {milestone.target_amount && (
-                                    <span className="text-sm font-medium text-accent">
+                                    <span className="text-sm font-medium text-blue-600">
                                       {profile?.currency || 'USD'} {Number(milestone.target_amount).toLocaleString()}
                                     </span>
                                   )}
                                 </div>
-                                <p className="text-sm text-muted-foreground whitespace-pre-line">
+                                <p className="text-sm mac-text-secondary whitespace-pre-line">
                                   {milestone.description}
                                 </p>
                                 {milestone.due_date && (
-                                  <div className="flex items-center gap-1 mt-2 text-xs text-muted-foreground">
+                                  <div className="flex items-center gap-1 mt-2 text-xs mac-text-tertiary">
                                     <Calendar className="w-3 h-3" />
                                     Due: {new Date(milestone.due_date).toLocaleDateString()}
                                   </div>
@@ -530,10 +529,10 @@ const Goals: React.FC = () => {
                   </div>
                 </div>
               ) : (
-                <Card className="glass-card p-12 text-center h-full flex items-center justify-center">
+                <Card className="mac-card p-12 text-center h-full flex items-center justify-center">
                   <div>
-                    <Target className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
-                    <p className="text-muted-foreground">
+                    <Target className="w-16 h-16 mac-text-tertiary mx-auto mb-4" />
+                    <p className="mac-text-secondary">
                       Select a goal to view details and milestones
                     </p>
                   </div>

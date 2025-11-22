@@ -99,7 +99,7 @@ export default function Milestones() {
     return (
       <div className="min-h-screen bg-gradient-to-br from-background via-primary/5 to-accent/10">
         <DashboardNav />
-        <div className="flex items-center justify-center min-h-[60vh]">
+        <div className="flex items-center justify-center min-h-[60vh] pt-24">
           <div className="w-16 h-16 border-4 border-accent/30 border-t-accent rounded-full animate-spin" />
         </div>
       </div>
@@ -113,8 +113,7 @@ export default function Milestones() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-primary/5 to-accent/10">
       <DashboardNav />
-
-      <main className="container mx-auto px-4 py-8">
+      <main className="container mx-auto px-4 py-8 pt-24">
         <div className="mb-8">
           <Button 
             variant="ghost" 

@@ -5,7 +5,6 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card } from '@/components/ui/card';
 import { useAuth } from '@/contexts/AuthContext';
-import { Sparkles } from 'lucide-react';
 
 export default function Auth() {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -29,19 +28,21 @@ export default function Auth() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-primary/5 to-accent/10 p-4">
-      <Card className="w-full max-w-md p-8 glass-card animate-fade-in">
+    <div className="min-h-screen flex items-center justify-center mac-bg p-4">
+      <Card className="w-full max-w-md p-8 mac-card animate-fade-in">
         <div className="flex items-center justify-center mb-6">
-          <Sparkles className="w-8 h-8 text-accent mr-2" />
-          <h1 className="text-3xl font-bold gradient-text">XPENSIFY</h1>
+          <span className="relative flex h-10 w-10 items-center justify-center rounded-lg bg-blue-100 text-2xl font-semibold text-blue-600 mr-2 transition-all duration-300">
+            💸
+          </span>
+          <h1 className="text-3xl font-bold mac-text-primary">XPENSIFY</h1>
         </div>
-        
-        <h2 className="text-2xl font-semibold text-center mb-2">
+
+        <h2 className="text-2xl font-semibold text-center mb-2 mac-text-primary">
           {isSignUp ? 'Create Your Account' : 'Welcome Back'}
         </h2>
-        <p className="text-muted-foreground text-center mb-6">
-          {isSignUp 
-            ? 'Start your financial journey today' 
+        <p className="mac-text-secondary text-center mb-6">
+          {isSignUp
+            ? 'Start your financial journey today'
             : 'Continue your path to financial wellness'}
         </p>
 
@@ -103,10 +104,10 @@ export default function Auth() {
           <button
             type="button"
             onClick={() => setIsSignUp(!isSignUp)}
-            className="text-sm text-accent hover:underline"
+            className="text-sm text-blue-600 hover:underline mac-text-primary"
           >
-            {isSignUp 
-              ? 'Already have an account? Sign in' 
+            {isSignUp
+              ? 'Already have an account? Sign in'
               : "Don't have an account? Sign up"}
           </button>
         </div>
