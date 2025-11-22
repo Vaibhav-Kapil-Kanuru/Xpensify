@@ -2,22 +2,20 @@ import { useState, useEffect } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ExternalLink, Loader2, RefreshCw, ChevronRight } from 'lucide-react';
-//import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import newsFinance from '@/assets/news-finance.jpg';
 import newsSavings from '@/assets/news-savings.jpg';
 import newsInvestment from '@/assets/news-investment.jpg';
-import Image, { StaticImageData } from 'next/image';
+import Image from 'next/image';
+import { experimental_useObject as useObject } from "@ai-sdk/react";
+import { financialNewsSchema } from '@/app/api/ai/generate-news/schema';
 
-// const categoryImages: Record<string, StaticImageData> = {
-//   'Markets': newsFinance,
-//   'Savings': newsSavings,
-//   'Investing': newsInvestment,
-//   'Crypto': newsFinance,
-//   'Economy': newsFinance,
-//   'Personal Finance': newsSavings
-// };
+  // const images={
+  //   "news-finance": <Image src={newsFinance} alt="News Finance" />,
+  //   "news-savings": <Image src={newsSavings} alt="News Savings" />,
+  //   "news-investment": <Image src={newsInvestment} alt="News Investment" />,
+  // }
 
 interface NewsArticle {
   title: string;
@@ -28,36 +26,25 @@ interface NewsArticle {
 
 export default function FinancialNews() {
   const [articles, setArticles] = useState<NewsArticle[]>([]);
-  const [loading, setLoading] = useState(true);
   const [selectedArticle, setSelectedArticle] = useState<NewsArticle | null>(null);
+  const { submit, object, isLoading, error, stop } = useObject({
+    api: "/api/ai/generate-news",
+    schema: financialNewsSchema,
+  });
 
-  // const loadNews = async () => {
-  //   setLoading(true);
-  //   try {
-  //     const { data, error } = await supabase.functions.invoke('generate-news');
-
-  //     if (error) {
-  //       console.error('Error loading news:', error);
-  //       toast.error('Failed to load news');
-  //       return;
-  //     }
-
-  //     if (data?.articles) {
-  //       setArticles(data.articles);
-  //     }
-  //   } catch (error) {
-  //     console.error('Error:', error);
-  //     toast.error('Failed to load news');
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
 
   useEffect(() => {
-    //loadNews();
+    if (object && Array.isArray(object)) {
+      setArticles(object as NewsArticle[]);
+    }
+  }, [object]);
+
+
+  useEffect(() => {
+    submit({});
   }, []);
 
-  if (loading) {
+  if (isLoading && articles.length === 0) {
     return (
       <Card className="mac-card p-6 h-full">
         <div className="flex items-center justify-between mb-4">
@@ -83,10 +70,10 @@ export default function FinancialNews() {
           <Button
             variant="ghost"
             size="sm"
-            // onClick={loadNews}
-            disabled={loading}
+            onClick={() => submit({})}
+            disabled={isLoading}
           >
-            <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
+            <RefreshCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} />
           </Button>
         </div>
 
@@ -119,11 +106,16 @@ export default function FinancialNews() {
                   </p>
                   <div className="flex items-center gap-1 text-blue-600 text-xs mt-1 opacity-0 group-hover:opacity-100 transition-opacity">
                     Read more <ChevronRight className="w-3 h-3" />
+
                   </div>
                 </div>
-              </div>
-            </Card>
-          ))}
+              </Card>
+            ))
+          ) : (
+            <div className="text-center py-8 text-muted-foreground">
+              {error ? `Error loading news: ${error.message}` : 'No news articles available'}
+            </div>
+          )}
         </div>
 
         <div className="mt-4 pt-3 border-t border-gray-200">
@@ -144,6 +136,7 @@ export default function FinancialNews() {
                 <DialogTitle className="text-2xl mac-text-primary">{selectedArticle.title}</DialogTitle>
               </DialogHeader>
               <div className="mt-4">
+
                 {/* <Image
                   src={categoryImages[selectedArticle.category] || newsFinance}
                   width={80}
@@ -152,6 +145,7 @@ export default function FinancialNews() {
                   className="w-full h-48 object-cover rounded-lg mb-4"
                 /> */}
                 <p className="text-sm mac-text-secondary mb-4 font-medium">
+
                   {selectedArticle.description}
                 </p>
                 <div className="prose prose-sm max-w-none">

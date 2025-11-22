@@ -30,11 +30,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+
         <div className="relative min-h-screen bg-background text-foreground artistic-bg">
           <div className="pointer-events-none fixed inset-0 -z-10 artistic-overlay">
             <div className="absolute inset-0 pattern-grid opacity-15" />
             <div className="absolute inset-0 pattern-dots opacity-10" />
           </div>
+
           <ReactQueryProvider>
             <TooltipProvider>
               <AuthProvider>
@@ -43,7 +45,7 @@ export default function RootLayout({
               </AuthProvider>
             </TooltipProvider>
           </ReactQueryProvider>
-        </div>
+        {/* </div> */}
       </body>
     </html>
   );
