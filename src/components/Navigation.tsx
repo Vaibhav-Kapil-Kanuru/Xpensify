@@ -25,7 +25,7 @@ const Navigation = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
       {/* Elegant background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[hsl(var(--green-glow))/0.08] via-transparent to-[hsl(var(--secondary))/0.08] blur-2xl" />
+      <div className="absolute inset-0 bg-gradient-to-r from-blue-600/8 via-transparent to-[hsl(var(--secondary))/0.08] blur-2xl" />
       
       {/* Glass morphism nav bar */}
       <div 
@@ -44,7 +44,7 @@ const Navigation = () => {
                 <span className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </span>
               <div className="flex flex-col leading-tight">
-                <span className="text-lg font-bold text-foreground/95 group-hover:text-[hsl(var(--green-glow))] transition-colors duration-300 tracking-tight">
+                <span className="text-lg font-bold text-foreground/95 group-hover:text-blue-600 transition-colors duration-300 tracking-tight">
                   XPENSIFY
                 </span>
                 <span className="text-[10px] uppercase tracking-[0.35em] text-foreground/50 group-hover:text-foreground/70 transition-colors duration-300">
@@ -59,12 +59,12 @@ const Navigation = () => {
                 <a
                   key={link.href}
                   href={link.href}
-                  className="group relative text-foreground/80 transition-all duration-300 hover:text-[hsl(var(--green-glow))]"
+                  className="group relative text-foreground/80 transition-all duration-300 hover:text-blue-600"
                   style={{ animationDelay: `${index * 50}ms` }}
                 >
                   <span className="relative z-10">{link.label}</span>
-                  <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-gradient-to-r from-[hsl(var(--green-glow))] via-[hsl(var(--green-glow))] to-[hsl(var(--green-glow))] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center rounded-full" />
-                  <span className="absolute inset-0 -z-10 bg-[hsl(var(--green-glow))/0.05] rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300" />
+                  <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-gradient-to-r from-blue-600 via-blue-600 to-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center rounded-full" />
+                  <span className="absolute inset-0 -z-10 bg-blue-600/5 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300" />
                 </a>
               ))}
             </div>
@@ -75,7 +75,7 @@ const Navigation = () => {
                 <Button 
                   variant="ghost" 
                   size="sm" 
-                  className="bg-[hsl(var(--glass-bg))] backdrop-blur-md border border-[hsl(var(--glass-border))] hover:bg-[hsl(var(--green-glow))/0.1] hover:border-[hsl(var(--green-glow))/0.4] transition-all duration-300 text-foreground/90 font-medium"
+                  className="bg-[hsl(var(--glass-bg))] backdrop-blur-md border border-[hsl(var(--glass-border))] hover:bg-blue-600/10 hover:border-blue-600/40 transition-all duration-300 text-foreground/90 font-medium"
                 >
                   Sign In
                 </Button>
@@ -91,7 +91,7 @@ const Navigation = () => {
               <Button 
                 variant="ghost" 
                 size="icon" 
-                className="md:hidden bg-[hsl(var(--glass-bg))] backdrop-blur-md border border-[hsl(var(--glass-border))] hover:bg-[hsl(var(--green-glow))/0.1] transition-all duration-300"
+                className="md:hidden bg-[hsl(var(--glass-bg))] backdrop-blur-md border border-[hsl(var(--glass-border))] hover:bg-blue-600/10 transition-all duration-300"
               >
                 <Menu className="w-5 h-5" />
               </Button>

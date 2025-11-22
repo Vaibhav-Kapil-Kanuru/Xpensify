@@ -80,74 +80,71 @@ export default function Dashboard() {
   const wellnessScore = insights?.financialWellnessScore || 50;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-primary/5 to-accent/10">
+    <div className="min-h-screen mac-bg">
       <DashboardNav />
 
       <main className="container mx-auto px-4 py-8">
         {/* Welcome Section */}
         <div className="mb-8 animate-fade-in">
-          <h2 className="text-3xl font-bold mb-2">
+          <h2 className="text-3xl font-bold mb-2 mac-text-primary">
             Welcome back, {profile?.full_name || 'there'}! 👋
           </h2>
-          <p className="text-muted-foreground">
+          <p className="mac-text-secondary">
             {insights?.motivationalMessage || 'Let\'s continue building your financial future together.'}
           </p>
         </div>
 
-        {/* Financial Wellness Score */}
-        <Card className="glass-card p-6 mb-6 animate-fade-in">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-xl font-semibold">Financial Wellness Score</h3>
-            <span className="text-3xl font-bold gradient-text">{wellnessScore}/100</span>
-          </div>
-          <Progress value={wellnessScore} className="h-3" />
-          <p className="text-sm text-muted-foreground mt-2">
-            Keep going! You're making great progress on your financial journey.
-          </p>
-        </Card>
-
         {/* Main Content Grid */}
         <div className="grid lg:grid-cols-3 gap-6 mb-6">
-          {/* Left Column - Today's Focus & Learning Streak */}
+          {/* Left Column - Today's Focus, Learning Streak & Financial Wellness Score */}
           <div className="lg:col-span-2 space-y-6">
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-3 gap-6">
               {/* Today's Focus */}
-              <Card className="glass-card p-6 animate-fade-in">
+              <Card className="mac-card p-6 animate-fade-in">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center">
-                    <Target className="w-5 h-5 text-accent" />
+                  <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
+                    <Target className="w-5 h-5 text-blue-600" />
                   </div>
-                  <h3 className="text-lg font-semibold">Today's Focus</h3>
+                  <h3 className="text-lg font-semibold mac-text-primary">Today's Focus</h3>
                 </div>
-                <p className="text-foreground/90">
+                <p className="mac-text-secondary">
                   {insights?.todaysFocus || 'Set your first financial goal to get started!'}
                 </p>
               </Card>
 
               {/* Learning Streak */}
-              <Card className="glass-card p-6 animate-fade-in">
+              <Card className="mac-card p-6 animate-fade-in">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center">
-                    <GraduationCap className="w-5 h-5 text-accent" />
+                  <div className="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center">
+                    <GraduationCap className="w-5 h-5 text-purple-600" />
                   </div>
-                  <h3 className="text-lg font-semibold">Learning Streak</h3>
+                  <h3 className="text-lg font-semibold mac-text-primary">Learning Streak</h3>
                 </div>
                 <div className="flex items-baseline gap-2">
-                  <span className="text-3xl font-bold gradient-text">
+                  <span className="text-3xl font-bold text-blue-600">
                     {streak?.current_streak || 0}
                   </span>
-                  <span className="text-muted-foreground">days</span>
+                  <span className="mac-text-secondary">days</span>
                 </div>
-                <p className="text-sm text-muted-foreground mt-1">
+                <p className="text-sm mac-text-tertiary mt-1">
                   Longest streak: {streak?.longest_streak || 0} days 🔥
                 </p>
+              </Card>
+
+              {/* Financial Wellness Score - Compact, aligned with Learning Streak */}
+              <Card className="mac-card p-4 animate-fade-in flex flex-col justify-between">
+                <h3 className="text-sm font-semibold mb-3 mac-text-primary">Wellness Score</h3>
+                <div className="flex items-center justify-center flex-1">
+                  <span className="text-2xl font-bold text-green-600">{wellnessScore}/100</span>
+                </div>
+                <Progress value={wellnessScore} className="h-2 mt-3" />
               </Card>
             </div>
 
             {/* Active Goals */}
-            <Card className="glass-card p-6 animate-fade-in">
+            <Card className="mac-card p-6 animate-fade-in">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-xl font-semibold">Your Goals</h3>
+                <h3 className="text-xl font-semibold mac-text-primary">Your Goals</h3>
                 <Button variant="ghost" size="sm" onClick={() => navigate.push('/goals')}>
                   <Plus className="w-4 h-4 mr-2" />
                   Add Goal
@@ -156,8 +153,8 @@ export default function Dashboard() {
               
               {goals.length === 0 ? (
                 <div className="text-center py-8">
-                  <Target className="w-12 h-12 text-muted-foreground mx-auto mb-3" />
-                  <p className="text-muted-foreground mb-4">No active goals yet</p>
+                  <Target className="w-12 h-12 mac-text-tertiary mx-auto mb-3" />
+                  <p className="mac-text-secondary mb-4">No active goals yet</p>
                   <Button variant="outline" onClick={() => navigate.push('/goals')}>Create Your First Goal</Button>
                 </div>
               ) : (
@@ -172,20 +169,20 @@ export default function Dashboard() {
                     return (
                       <Card 
                         key={goal.id} 
-                        className="p-4 glass-card hover:border-accent/50 transition-all cursor-pointer"
+                        className="p-4 mac-card transition-all cursor-pointer"
                         onClick={() => navigate.push('/goals')}
                       >
                         <div className="flex items-start justify-between mb-2">
                           <div>
-                            <h4 className="font-semibold">{goal.title}</h4>
-                            <p className="text-sm text-muted-foreground">{goal.category}</p>
+                            <h4 className="font-semibold mac-text-primary">{goal.title}</h4>
+                            <p className="text-sm mac-text-secondary">{goal.category}</p>
                           </div>
-                          <span className="text-sm font-medium text-accent">
+                          <span className="text-sm font-medium text-blue-600">
                             {progress.toFixed(0)}%
                           </span>
                         </div>
                         <Progress value={progress} className="h-2 mb-2" />
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-sm mac-text-tertiary">
                           {profile?.currency || 'USD'} {currentAmount.toLocaleString()} / {targetAmount.toLocaleString()}
                         </p>
                       </Card>
@@ -196,14 +193,14 @@ export default function Dashboard() {
             </Card>
 
             {/* Next Milestone */}
-            <Card className="glass-card p-6 animate-fade-in">
+            <Card className="mac-card p-6 animate-fade-in">
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center">
-                  <TrendingUp className="w-5 h-5 text-accent" />
+                <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
+                  <TrendingUp className="w-5 h-5 text-green-600" />
                 </div>
-                <h3 className="text-lg font-semibold">Next Milestone</h3>
+                <h3 className="text-lg font-semibold mac-text-primary">Next Milestone</h3>
               </div>
-              <p className="text-foreground/90 mb-4">
+              <p className="mac-text-secondary mb-4">
                 {insights?.nextMilestone || 'Complete your onboarding to unlock personalized milestones!'}
               </p>
               <Button variant="outline" className="w-full" onClick={() => navigate.push('/milestones')}>
@@ -223,7 +220,7 @@ export default function Dashboard() {
           <Button 
             size="lg" 
             variant="outline" 
-            className="rounded-full shadow-glow"
+            className="rounded-full bg-white/90 backdrop-blur-md border border-gray-200 shadow-lg hover:shadow-xl hover:bg-white"
             onClick={() => navigate.push('/chat')}
           >
             <MessageCircle className="w-5 h-5 mr-2" />

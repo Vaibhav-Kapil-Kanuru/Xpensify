@@ -97,13 +97,13 @@ const Learning:React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-primary/5 to-accent/10">
+    <div className="min-h-screen mac-bg">
       <DashboardNav />
 
       <main className="container mx-auto px-4 py-8">
         <div className="mb-8 animate-fade-in">
-          <h2 className="text-3xl font-bold mb-2">Financial Learning Hub 📚</h2>
-          <p className="text-muted-foreground">
+          <h2 className="text-3xl font-bold mb-2 mac-text-primary">Financial Learning Hub 📚</h2>
+          <p className="mac-text-secondary">
             Master financial literacy with AI-powered personalized lessons
           </p>
         </div>
@@ -115,14 +115,14 @@ const Learning:React.FC = () => {
               {categories.map((cat) => (
                 <Card
                   key={cat.id}
-                  className={`glass-card p-6 cursor-pointer transition-all hover:scale-105 ${
-                    selectedCategory === cat.id ? 'ring-2 ring-accent' : ''
+                  className={`mac-card p-6 cursor-pointer transition-all hover:scale-105 ${
+                    selectedCategory === cat.id ? 'ring-2 ring-blue-500' : ''
                   }`}
                   onClick={() => setSelectedCategory(cat.id)}
                 >
                   <div className="text-center">
                     <div className="text-4xl mb-2">{cat.icon}</div>
-                    <h3 className="font-semibold mb-1">{cat.name}</h3>
+                    <h3 className="font-semibold mb-1 mac-text-primary">{cat.name}</h3>
                     <Badge className={cat.color}>Learn</Badge>
                   </div>
                 </Card>
@@ -131,8 +131,8 @@ const Learning:React.FC = () => {
 
             {/* Level Selection */}
             {selectedCategory && (
-              <Card className="glass-card p-6 mb-6 animate-fade-in">
-                <h3 className="text-lg font-semibold mb-4">Select Your Level</h3>
+              <Card className="mac-card p-6 mb-6 animate-fade-in">
+                <h3 className="text-lg font-semibold mb-4 mac-text-primary">Select Your Level</h3>
                 <div className="flex gap-3">
                   {levels.map((level) => (
                     <Button
@@ -174,24 +174,24 @@ const Learning:React.FC = () => {
         ) : (
           <div className="space-y-6 animate-fade-in">
             {/* Lesson Content */}
-            <Card className="glass-card p-8">
-              <h2 className="text-2xl font-bold mb-4 gradient-text">{lesson.title}</h2>
-              <div className="prose prose-lg max-w-none text-foreground/90">
+            <Card className="mac-card p-8">
+              <h2 className="text-2xl font-bold mb-4 mac-text-primary">{lesson.title}</h2>
+              <div className="prose prose-lg max-w-none mac-text-primary">
                 {lesson.content.split('\n\n').map((para: string, i: number) => (
                   <p key={i} className="mb-4">{para}</p>
                 ))}
               </div>
 
-              <div className="mt-6 p-4 bg-accent/10 rounded-lg">
-                <h3 className="font-semibold mb-3 flex items-center gap-2">
-                  <Target className="w-5 h-5 text-accent" />
+              <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+                <h3 className="font-semibold mb-3 flex items-center gap-2 mac-text-primary">
+                  <Target className="w-5 h-5 text-blue-600" />
                   Key Takeaways
                 </h3>
                 <ul className="space-y-2">
                   {lesson.keyTakeaways.map((point: string, i: number) => (
                     <li key={i} className="flex items-start gap-2">
-                      <CheckCircle2 className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
-                      <span>{point}</span>
+                      <CheckCircle2 className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                      <span className="mac-text-primary">{point}</span>
                     </li>
                   ))}
                 </ul>
@@ -199,12 +199,12 @@ const Learning:React.FC = () => {
             </Card>
 
             {/* Quiz */}
-            <Card className="glass-card p-6">
-              <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-                <Trophy className="w-6 h-6 text-accent" />
+            <Card className="mac-card p-6">
+              <h3 className="text-xl font-semibold mb-4 flex items-center gap-2 mac-text-primary">
+                <Trophy className="w-6 h-6 text-blue-600" />
                 Test Your Knowledge
               </h3>
-              <p className="text-lg mb-4">{lesson.quiz.question}</p>
+              <p className="text-lg mb-4 mac-text-primary">{lesson.quiz.question}</p>
               <div className="space-y-3 mb-6">
                 {lesson.quiz.options.map((option: string, i: number) => (
                   <Button

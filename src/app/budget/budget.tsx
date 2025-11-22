@@ -12,9 +12,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { 
-  PieChart, 
-  TrendingUp, 
+import {
+  PieChart,
+  TrendingUp,
   Plus,
   Loader2,
   Lightbulb,
@@ -171,7 +171,7 @@ const Budget: React.FC = () => {
       //   credentials: 'include',
       //   body: JSON.stringify({ transactions, budget }),
       // });
-      
+
       toast.info('AI analysis feature coming soon!');
     } catch (error) {
       console.error('Error analyzing spending:', error);
@@ -224,11 +224,11 @@ const Budget: React.FC = () => {
   // Calculate totals and balances
   const expenses = transactions.filter(t => t.type === 'expense');
   const income = transactions.filter(t => t.type === 'income');
-  
+
   const totalExpenses = expenses.reduce((sum, t) => sum + Number(t.amount), 0);
   const totalIncome = income.reduce((sum, t) => sum + Number(t.amount), 0);
   const netBalance = totalIncome - totalExpenses;
-  
+
   const categoryTotals = transactions.reduce((acc, t) => {
     acc[t.category] = (acc[t.category] || 0) + Number(t.amount);
     return acc;
@@ -236,30 +236,30 @@ const Budget: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-primary/5 to-accent/10">
-        <div className="w-16 h-16 border-4 border-accent/30 border-t-accent rounded-full animate-spin" />
+      <div className="min-h-screen flex items-center justify-center mac-bg">
+        <div className="w-16 h-16 border-4 border-blue-300 border-t-blue-600 rounded-full animate-spin" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-primary/5 to-accent/10">
+    <div className="min-h-screen mac-bg">
       <DashboardNav />
 
       <main className="container mx-auto px-4 py-8">
         <div className="mb-8 animate-fade-in">
-          <h2 className="text-3xl font-bold mb-2">Budget Tracker 💰</h2>
-          <p className="text-muted-foreground">
+          <h2 className="text-3xl font-bold mb-2 mac-text-primary">Budget Tracker 💰</h2>
+          <p className="mac-text-secondary">
             Track spending and get AI-powered insights
           </p>
         </div>
 
         <div className="grid lg:grid-cols-4 gap-6 mb-6">
           {/* Total Income */}
-          <Card className="glass-card p-6">
+          <Card className="mac-card p-6">
             <div className="flex items-center justify-between mb-2">
-              <h3 className="text-sm text-muted-foreground">Total Income</h3>
-              <ArrowUpCircle className="w-5 h-5 text-green-500" />
+              <h3 className="text-sm mac-text-secondary">Total Income</h3>
+              <ArrowUpCircle className="w-5 h-5 text-green-600" />
             </div>
             <p className="text-3xl font-bold text-green-600">
               ₹{totalIncome.toLocaleString()}
@@ -267,10 +267,10 @@ const Budget: React.FC = () => {
           </Card>
 
           {/* Total Expenses */}
-          <Card className="glass-card p-6">
+          <Card className="mac-card p-6">
             <div className="flex items-center justify-between mb-2">
-              <h3 className="text-sm text-muted-foreground">Total Expenses</h3>
-              <ArrowDownCircle className="w-5 h-5 text-red-500" />
+              <h3 className="text-sm mac-text-secondary">Total Expenses</h3>
+              <ArrowDownCircle className="w-5 h-5 text-red-600" />
             </div>
             <p className="text-3xl font-bold text-red-600">
               ₹{totalExpenses.toLocaleString()}
@@ -278,10 +278,10 @@ const Budget: React.FC = () => {
           </Card>
 
           {/* Net Balance */}
-          <Card className="glass-card p-6">
+          <Card className="mac-card p-6">
             <div className="flex items-center justify-between mb-2">
-              <h3 className="text-sm text-muted-foreground">Net Balance</h3>
-              <TrendingUp className="w-5 h-5 text-accent" />
+              <h3 className="text-sm mac-text-secondary">Net Balance</h3>
+              <TrendingUp className="w-5 h-5 text-blue-600" />
             </div>
             <p className={`text-3xl font-bold ${netBalance >= 0 ? 'text-green-600' : 'text-red-600'}`}>
               ₹{netBalance.toLocaleString()}
@@ -289,19 +289,19 @@ const Budget: React.FC = () => {
           </Card>
 
           {/* Transactions */}
-          <Card className="glass-card p-6">
-            <h3 className="text-sm text-muted-foreground mb-2">Transactions</h3>
-            <p className="text-3xl font-bold">{transactions.length}</p>
-            <p className="text-xs text-muted-foreground mt-1">
+          <Card className="mac-card p-6">
+            <h3 className="text-sm mac-text-secondary mb-2">Transactions</h3>
+            <p className="text-3xl font-bold mac-text-primary">{transactions.length}</p>
+            <p className="text-xs mac-text-tertiary mt-1">
               {income.length} income • {expenses.length} expenses
             </p>
           </Card>
         </div>
 
         {/* Add Transaction */}
-        <Card className="glass-card p-6 mb-6">
+        <Card className="mac-card p-6 mb-6">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-xl font-semibold">Transactions</h3>
+            <h3 className="text-xl font-semibold mac-text-primary">Transactions</h3>
             <Button variant="outline" size="sm" onClick={() => setShowForm(!showForm)}>
               <Plus className="w-4 h-4 mr-2" />
               Add Transaction
@@ -309,7 +309,7 @@ const Budget: React.FC = () => {
           </div>
 
           {showForm && (
-            <div className="grid md:grid-cols-2 gap-4 mb-6 p-4 bg-accent/5 rounded-lg">
+            <div className="grid md:grid-cols-2 gap-4 mb-6 p-4 bg-gray-50 rounded-lg">
               <div className="md:col-span-2">
                 <Label>Transaction Type</Label>
                 <div className="flex gap-3 mt-2">
@@ -388,8 +388,8 @@ const Budget: React.FC = () => {
                 />
               </div>
               <div className="md:col-span-2 flex gap-3">
-                <Button 
-                  onClick={addTransaction} 
+                <Button
+                  onClick={addTransaction}
                   variant="default"
                   disabled={addingTransaction}
                 >
@@ -409,7 +409,7 @@ const Budget: React.FC = () => {
 
           {/* Transaction List */}
           {transactions.length === 0 ? (
-            <div className="text-center py-8 text-muted-foreground">
+            <div className="text-center py-8 mac-text-secondary">
               <PieChart className="w-12 h-12 mx-auto mb-3 opacity-50" />
               <p>No transactions yet. Add one to get started!</p>
             </div>
@@ -418,16 +418,16 @@ const Budget: React.FC = () => {
               {transactions.slice(0, 10).map((t) => {
                 const isIncome = t.type === 'income';
                 return (
-                  <div key={t.id} className="flex items-center justify-between p-3 rounded-lg bg-accent/5">
+                  <div key={t.id} className="flex items-center justify-between p-3 rounded-lg bg-gray-50">
                     <div className="flex items-center gap-3">
                       {isIncome ? (
-                        <ArrowUpCircle className="w-5 h-5 text-green-500" />
+                        <ArrowUpCircle className="w-5 h-5 text-green-600" />
                       ) : (
-                        <ArrowDownCircle className="w-5 h-5 text-red-500" />
+                        <ArrowDownCircle className="w-5 h-5 text-red-600" />
                       )}
                       <div>
-                        <p className="font-medium">{t.description || t.category}</p>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="font-medium mac-text-primary">{t.description || t.category}</p>
+                        <p className="text-sm mac-text-secondary">
                           {t.category} • {new Date(t.date).toLocaleDateString()}
                         </p>
                       </div>
@@ -443,16 +443,16 @@ const Budget: React.FC = () => {
         </Card>
 
         {/* Smart Upload */}
-        <SmartUpload 
-          userId={user?.id || ''} 
+        <SmartUpload
+          userId={user?.id || ''}
           onTransactionsExtracted={handleTransactionsExtracted}
         />
 
         {/* AI Analysis */}
-        <Card className="glass-card p-6 mt-6">
+        <Card className="mac-card p-6 mt-6">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-xl font-semibold flex items-center gap-2">
-              <Lightbulb className="w-6 h-6 text-accent" />
+            <h3 className="text-xl font-semibold flex items-center gap-2 mac-text-primary">
+              <Lightbulb className="w-6 h-6 text-blue-600" />
               AI Spending Analysis
             </h3>
             <Button
@@ -477,24 +477,24 @@ const Budget: React.FC = () => {
           {analysis ? (
             <div className="space-y-6">
               <div>
-                <h4 className="font-semibold mb-2">Summary</h4>
-                <p className="text-foreground/90">{analysis.summary}</p>
+                <h4 className="font-semibold mb-2 mac-text-primary">Summary</h4>
+                <p className="mac-text-primary">{analysis.summary}</p>
               </div>
 
               <div>
-                <h4 className="font-semibold mb-2">Insights</h4>
+                <h4 className="font-semibold mb-2 mac-text-primary">Insights</h4>
                 <ul className="space-y-2">
                   {analysis.insights.map((insight: string, i: number) => (
                     <li key={i} className="flex items-start gap-2">
-                      <span className="text-accent">•</span>
-                      <span>{insight}</span>
+                      <span className="text-blue-600">•</span>
+                      <span className="mac-text-primary">{insight}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
               <div>
-                <h4 className="font-semibold mb-2">Recommendations</h4>
+                <h4 className="font-semibold mb-2 mac-text-primary">Recommendations</h4>
                 <ul className="space-y-2">
                   {analysis.recommendations.map((rec: string, i: number) => (
                     <li key={i} className="flex items-start gap-2 text-green-600">
@@ -506,10 +506,10 @@ const Budget: React.FC = () => {
               </div>
 
               <div>
-                <h4 className="font-semibold mb-2">Savings Opportunities</h4>
+                <h4 className="font-semibold mb-2 mac-text-primary">Savings Opportunities</h4>
                 <ul className="space-y-2">
                   {analysis.savingsOpportunities.map((opp: string, i: number) => (
-                    <li key={i} className="flex items-start gap-2 text-accent">
+                    <li key={i} className="flex items-start gap-2 text-blue-600">
                       <span>💡</span>
                       <span>{opp}</span>
                     </li>
@@ -518,7 +518,7 @@ const Budget: React.FC = () => {
               </div>
             </div>
           ) : (
-            <div className="text-center py-8 text-muted-foreground">
+            <div className="text-center py-8 mac-text-secondary">
               <p>Add transactions and click "Analyze Spending" to get AI-powered insights</p>
             </div>
           )}

@@ -90,23 +90,23 @@ const HowItWorks = () => {
         </ScrollReveal>
 
         <div className="relative mx-auto mt-20 max-w-5xl">
-          <div className="absolute left-[30px] top-0 hidden h-full w-px bg-gradient-to-b from-[hsl(var(--green-glow))] via-[hsl(var(--green-glow))/0.3] to-transparent md:block" />
+          <div className="absolute left-[30px] top-0 hidden h-full w-px bg-gradient-to-b from-blue-600 via-blue-600/30 to-transparent md:block" />
           <div className="space-y-8">
             {steps.map((step, index) => (
               <ScrollReveal key={step.number} delay={index * 150}>
                 <div className="relative flex flex-col gap-6 md:flex-row md:items-start group">
                   <div className="relative flex w-full items-center gap-4 md:w-auto md:flex-col md:items-center">
-                    <span className="relative flex h-16 w-16 items-center justify-center rounded-2xl bg-[var(--gradient-accent)] text-primary-green text-xl font-bold shadow-[var(--shadow-glow)] transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-[var(--shadow-intense)] z-10">
+                    <span className="relative flex h-16 w-16 items-center justify-center rounded-2xl bg-[var(--gradient-accent)] text-blue-600 text-xl font-bold shadow-[var(--shadow-glow)] transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-[var(--shadow-intense)] z-10">
                       {step.number}
                       <span className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     </span>
-                    <span className="hidden h-full w-px bg-gradient-to-b from-[hsl(var(--green-glow))/0.4] via-[hsl(var(--green-glow))/0.1] to-transparent md:block" />
+                    <span className="hidden h-full w-px bg-gradient-to-b from-blue-600/40 via-blue-600/10 to-transparent md:block" />
                   </div>
-                  <div className="flex-1 rounded-3xl border border-[hsl(var(--glass-border))] bg-[hsl(var(--glass-bg))] p-8 backdrop-blur-xl transition-all duration-500 hover:border-[hsl(var(--green-glow))/0.5] hover:shadow-[var(--shadow-elegant)] hover:scale-[1.01]">
+                  <div className="flex-1 rounded-3xl border border-[hsl(var(--glass-border))] bg-[hsl(var(--glass-bg))] p-8 backdrop-blur-xl transition-all duration-500 hover:border-blue-600/50 hover:shadow-[var(--shadow-elegant)] hover:scale-[1.01]">
                     <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
                       <div className="flex-1">
                         <div className="flex items-center gap-3 mb-3">
-                          <CheckCircle2 className="h-6 w-6 text-[hsl(var(--green-glow))] animate-glow-pulse" />
+                          <CheckCircle2 className="h-6 w-6 text-blue-600 animate-glow-pulse" />
                           <h3 className="text-2xl md:text-3xl font-bold text-foreground/95">{step.title}</h3>
                         </div>
                         <p className="mt-2 text-base md:text-lg text-foreground/75 leading-relaxed">{step.description}</p>
@@ -123,28 +123,28 @@ const HowItWorks = () => {
         </div>
 
         <ScrollReveal delay={600}>
-          <div className="mt-24 rounded-3xl border border-[hsl(var(--glass-border))] bg-[hsl(var(--glass-bg))] p-10 md:p-12 text-center shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-intense)] transition-all duration-500 backdrop-blur-2xl">
-            <h3 className="text-3xl md:text-4xl font-bold text-foreground/95">Ready to Take Control?</h3>
-            <p className="mt-4 text-lg text-foreground/75 max-w-2xl mx-auto">
+          <div className="mt-16 mx-auto max-w-2xl rounded-2xl border border-[hsl(var(--glass-border))] bg-[hsl(var(--glass-bg))] p-6 md:p-8 text-center shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-intense)] transition-all duration-500 backdrop-blur-2xl">
+            <h3 className="text-2xl md:text-3xl font-bold text-foreground/95">Ready to Take Control?</h3>
+            <p className="mt-3 text-base text-foreground/75 max-w-lg mx-auto">
               Join thousands already mastering their finances with a coach that speaks your language.
             </p>
-            <div className="mt-12 flex flex-wrap items-center justify-center gap-10 text-left">
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-center">
               {[
                 { label: "Active Users", value: "110K+" },
                 { label: "Goals Achieved", value: "$52M+" },
                 { label: "Average Rating", value: "4.9★" },
               ].map((stat, idx) => (
                 <div key={stat.label} className="animate-scale-in" style={{ animationDelay: `${idx * 100}ms` }}>
-                  <p className="text-4xl md:text-5xl font-bold gradient-text">{stat.value}</p>
-                  <p className="text-xs uppercase tracking-[0.3em] text-foreground/60 mt-2 font-medium">{stat.label}</p>
+                  <p className="text-2xl md:text-3xl font-bold gradient-text">{stat.value}</p>
+                  <p className="text-xs uppercase tracking-[0.3em] text-foreground/60 mt-1 font-medium">{stat.label}</p>
                 </div>
               ))}
             </div>
-            <div className="mt-12 flex flex-wrap justify-center gap-5">
-              <Button size="lg" className="btn-premium text-primary-foreground font-semibold shadow-[var(--shadow-glow)] px-8 py-6 text-base">
+            <div className="mt-8 flex flex-wrap justify-center gap-4">
+              <Button size="default" className="btn-premium text-primary-foreground font-semibold shadow-[var(--shadow-glow)] px-6 py-3">
                 Start for Free
               </Button>
-              <Button size="lg" variant="outline" className="bg-[hsl(var(--glass-bg))] backdrop-blur-md border-[hsl(var(--glass-border))] text-foreground/90 hover:bg-[hsl(var(--green-glow))/0.1] hover:border-[hsl(var(--green-glow))/0.5] transition-all duration-300 px-8 py-6 text-base font-semibold shadow-[var(--shadow-soft)]">
+              <Button size="default" variant="outline" className="bg-[hsl(var(--glass-bg))] backdrop-blur-md border-[hsl(var(--glass-border))] text-foreground/90 hover:bg-blue-600/10 hover:border-blue-600/50 transition-all duration-300 px-6 py-3 font-semibold shadow-[var(--shadow-soft)]">
                 Talk to an Expert
               </Button>
             </div>

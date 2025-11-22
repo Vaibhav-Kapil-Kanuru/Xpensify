@@ -35,11 +35,11 @@ const features = [
     title: "Progress Dashboard",
     description: "Gamified visual home with progress rings, goal heatmaps, and financial wellness scores.",
   },
-  {
-    icon: Shield,
-    title: "Privacy & Trust",
-    description: "AES-256 encryption, full data control, zero third-party sharing. Your money, your rules.",
-  },
+  // {
+  //   icon: Shield,
+  //   title: "Privacy & Trust",
+  //   description: "AES-256 encryption, full data control, zero third-party sharing. Your money, your rules.",
+  // },
 ];
 
 const featureHighlights = [
@@ -110,14 +110,14 @@ const Features = () => {
             <ScrollReveal key={feature.title} delay={index * 100}>
               <Card className="glass-card group relative overflow-hidden h-full hover:scale-[1.02] transition-all duration-500">
                 {/* Animated glow on hover */}
-                <div className="pointer-events-none absolute -top-24 -right-24 h-48 w-48 rounded-full bg-[hsl(var(--green-glow))]/20 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                <div className="pointer-events-none absolute -top-24 -right-24 h-48 w-48 rounded-full bg-blue-600/20 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                 <div className="pointer-events-none absolute -bottom-24 -left-24 h-48 w-48 rounded-full bg-[hsl(var(--secondary))]/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                
+
                 <CardHeader className="relative pb-3">
                   <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--gradient-accent)] shadow-[var(--shadow-glow)] transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-[var(--shadow-intense)]">
-                    <feature.icon className="w-7 h-7 text-primary-green" />
+                    <feature.icon className="w-7 h-7 text-blue-600" />
                   </div>
-                  <CardTitle className="mt-5 text-xl font-bold text-foreground/95 group-hover:text-[hsl(var(--green-glow))] transition-colors duration-300">
+                  <CardTitle className="mt-5 text-xl font-bold text-foreground/95 group-hover:text-blue-600 transition-colors duration-300">
                     {feature.title}
                   </CardTitle>
                 </CardHeader>
@@ -133,7 +133,7 @@ const Features = () => {
           <div className="mt-24 rounded-3xl border border-[hsl(var(--glass-border))] bg-[hsl(var(--glass-bg))] backdrop-blur-2xl p-10 md:p-12 shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-intense)] transition-all duration-500">
             <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
               <div className="space-y-6 animate-fade-in-up">
-                <Badge className="bg-[hsl(var(--green-glow))/0.2] text-[hsl(var(--green-glow))] border border-[hsl(var(--green-glow))/0.3] font-semibold px-4 py-1.5">
+                <Badge className="bg-blue-600/20 text-blue-600 border border-blue-600/30 font-semibold px-4 py-1.5">
                   Real-time XPENSIFY Dashboard
                 </Badge>
                 <h3 className="text-3xl md:text-4xl font-bold text-foreground/95 leading-tight">
@@ -157,12 +157,12 @@ const Features = () => {
                 </div>
               </div>
               <div className="relative w-full overflow-hidden rounded-3xl border border-[hsl(var(--glass-border))] bg-[hsl(var(--glass-bg))] p-8 shadow-[var(--shadow-elegant)]">
-                <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-br from-[hsl(var(--green-glow))/0.15] via-transparent to-[hsl(var(--secondary))/0.15] opacity-60" />
+                <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-br from-blue-600/15 via-transparent to-[hsl(var(--secondary))/0.15] opacity-60" />
                 <div className="relative space-y-6">
                   <div className="rounded-2xl border border-[hsl(var(--glass-border))] bg-[hsl(var(--glass-bg))] p-6 backdrop-blur-xl shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-elegant)] transition-all duration-300">
                     <div className="flex items-center justify-between text-sm text-foreground/80 font-medium mb-4">
                       <span>Goal Progress</span>
-                      <span className="text-[hsl(var(--green-glow))] font-bold">82%</span>
+                      <span className="text-blue-600 font-bold">82%</span>
                     </div>
                     <div className="mt-4 h-2.5 w-full rounded-full bg-foreground/10 overflow-hidden">
                       <div className="h-full w-[82%] rounded-full bg-[var(--gradient-accent)] shadow-[var(--shadow-glow)] animate-shimmer" />
@@ -174,7 +174,7 @@ const Features = () => {
                         <p className="text-xs uppercase tracking-wider text-foreground/60 font-semibold mb-2">AI Coach</p>
                         <p className="text-lg font-semibold text-foreground/95 leading-relaxed">"Allocate 15% to your emergency fund."</p>
                       </div>
-                      <span className="rounded-full bg-[hsl(var(--green-glow))/0.2] border border-[hsl(var(--green-glow))/0.4] px-3 py-1.5 text-xs text-[hsl(var(--green-glow))] font-semibold whitespace-nowrap">
+                      <span className="rounded-full bg-blue-600/20 border border-blue-600/40 px-3 py-1.5 text-xs text-blue-600 font-semibold whitespace-nowrap">
                         Live suggestion
                       </span>
                     </div>
@@ -183,13 +183,13 @@ const Features = () => {
                     <p className="text-xs uppercase tracking-wider text-foreground/60 font-semibold mb-4">Wellness Score</p>
                     <div className="flex items-end gap-3 mb-6">
                       <span className="text-5xl font-bold gradient-text">92</span>
-                      <span className="text-sm text-[hsl(var(--green-glow))] font-medium pb-1">+7 this week</span>
+                      <span className="text-sm text-blue-600 font-medium pb-1">+7 this week</span>
                     </div>
                     <div className="grid grid-cols-6 gap-2 text-xs text-foreground/50">
                       {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day, idx) => (
                         <div
                           key={day}
-                          className="h-14 rounded-lg bg-gradient-to-t from-[hsl(var(--green-glow))/0.25] via-[hsl(var(--green-glow))/0.15] to-transparent border border-[hsl(var(--glass-border))] flex items-end justify-center pb-2 hover:from-[hsl(var(--green-glow))/0.35] transition-all duration-300"
+                          className="h-14 rounded-lg bg-gradient-to-t from-blue-600/25 via-blue-600/15 to-transparent border border-[hsl(var(--glass-border))] flex items-end justify-center pb-2 hover:from-blue-600/35 transition-all duration-300"
                         >
                           <span>{day}</span>
                         </div>

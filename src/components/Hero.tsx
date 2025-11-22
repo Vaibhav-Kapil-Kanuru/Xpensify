@@ -18,7 +18,7 @@ const AnimatedBadge = ({ children }: { children: React.ReactNode }) => {
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
       }`}
     >
-      <Sparkles className="w-4 h-4 text-[hsl(var(--green-glow))] animate-glow-pulse" />
+      <Sparkles className="w-4 h-4 text-blue-600 animate-glow-pulse" />
       <span className="text-sm font-semibold tracking-wide text-foreground/90">{children}</span>
     </div>
   );
@@ -119,7 +119,7 @@ const ScrollReveal = ({ children, delay = 0 }: { children: React.ReactNode; dela
 
 const TrustLine = () => (
   <p className="mt-12 text-sm text-foreground/70 flex items-center justify-center gap-2 animate-fade-in-up" style={{ animationDelay: '600ms' }}>
-    <Zap className="w-4 h-4 text-[hsl(var(--green-glow))] animate-glow-pulse" />
+    <Zap className="w-4 h-4 text-blue-600 animate-glow-pulse" />
     <span>Your data stays private</span>
     <span className="text-foreground/40">•</span>
     <span>No ads</span>
@@ -148,11 +148,11 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background/90" />
       </div>
 
-        {/* Enhanced Floating Blobs with better positioning - Green */}
-        <FloatingBlob size="18rem" color="hsl(142,76%,48%,0.12)" top="8%" left="5%" delay="0s" blur="blur-[120px]" />
-        <FloatingBlob size="22rem" color="hsl(160,84%,45%,0.1)" bottom="10%" right="8%" delay="2s" blur="blur-[140px]" />
-        <FloatingBlob size="28rem" color="hsl(142,76%,48%,0.08)" top="45%" left="-10%" delay="4s" blur="blur-[160px]" />
-        <FloatingBlob size="16rem" color="hsl(142,76%,55%,0.08)" top="20%" right="15%" delay="1s" blur="blur-[100px]" />
+        {/* Enhanced Floating Blobs with better positioning - Blue */}
+        <FloatingBlob size="18rem" color="hsl(217,91%,60%,0.12)" top="8%" left="5%" delay="0s" blur="blur-[120px]" />
+        <FloatingBlob size="22rem" color="hsl(221,83%,53%,0.1)" bottom="10%" right="8%" delay="2s" blur="blur-[140px]" />
+        <FloatingBlob size="28rem" color="hsl(217,91%,60%,0.08)" top="45%" left="-10%" delay="4s" blur="blur-[160px]" />
+        <FloatingBlob size="16rem" color="hsl(217,91%,65%,0.08)" top="20%" right="15%" delay="1s" blur="blur-[100px]" />
 
       {/* Content with enhanced animations */}
       <div className="container mx-auto px-6 text-center max-w-5xl z-10">
@@ -179,8 +179,8 @@ export default function Hero() {
         <ScrollReveal delay={200}>
           <p className="text-base md:text-lg lg:text-xl text-foreground/80 mb-10 max-w-2xl mx-auto leading-relaxed animate-fade-in-up" style={{ animationDelay: '400ms' }}>
             Master money through{" "}
-            <span className="text-[hsl(var(--green-glow))] font-semibold">smart goal-setting</span>,{" "}
-            <span className="text-[hsl(var(--green-glow))] font-semibold">personalized AI coaching</span>, and continuous learning.{" "}
+            <span className="text-blue-600 font-semibold">smart goal-setting</span>,{" "}
+            <span className="text-blue-600 font-semibold">personalized AI coaching</span>, and continuous learning.{" "}
             <span className="block mt-2 text-sm md:text-base text-foreground/70">
               XPENSIFY empowers you to understand finance and achieve your dreams.
             </span>
@@ -194,7 +194,7 @@ export default function Hero() {
               <ShineButton>Start Your Journey →</ShineButton>
             </Link>
             <a href="#features" className="w-full sm:w-auto">
-              <button className="px-10 py-4 rounded-xl bg-[hsl(var(--glass-bg))] backdrop-blur-xl border border-[hsl(var(--glass-border))] text-foreground hover:bg-[hsl(var(--green-glow))/0.15] hover:border-[hsl(var(--green-glow))/0.5] transition-all duration-300 font-semibold text-base shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-elegant)]">
+              <button className="px-10 py-4 rounded-xl bg-[hsl(var(--glass-bg))] backdrop-blur-xl border border-[hsl(var(--glass-border))] text-foreground hover:bg-blue-600/15 hover:border-blue-600/50 transition-all duration-300 font-semibold text-base shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-elegant)]">
                 Learn More
               </button>
             </a>
