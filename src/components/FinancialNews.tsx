@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ExternalLink, Loader2, RefreshCw, ChevronRight } from 'lucide-react';
@@ -11,11 +11,11 @@ import Image from 'next/image';
 import { experimental_useObject as useObject } from "@ai-sdk/react";
 import { financialNewsSchema } from '@/app/api/ai/generate-news/schema';
 
-  // const images={
-  //   "news-finance": <Image src={newsFinance} alt="News Finance" />,
-  //   "news-savings": <Image src={newsSavings} alt="News Savings" />,
-  //   "news-investment": <Image src={newsInvestment} alt="News Investment" />,
-  // }
+// const images={
+//   "news-finance": <Image src={newsFinance} alt="News Finance" />,
+//   "news-savings": <Image src={newsSavings} alt="News Savings" />,
+//   "news-investment": <Image src={newsInvestment} alt="News Investment" />,
+// }
 
 interface NewsArticle {
   title: string;
@@ -27,6 +27,7 @@ interface NewsArticle {
 export default function FinancialNews() {
   const [articles, setArticles] = useState<NewsArticle[]>([]);
   const [selectedArticle, setSelectedArticle] = useState<NewsArticle | null>(null);
+  const hasInitialized = useRef(false);
   const { submit, object, isLoading, error, stop } = useObject({
     api: "/api/ai/generate-news",
     schema: financialNewsSchema,
@@ -41,8 +42,11 @@ export default function FinancialNews() {
 
 
   useEffect(() => {
-    submit({});
-  }, []);
+    if (!hasInitialized.current) {
+      hasInitialized.current = true;
+      submit({});
+    }
+  }, [submit]);
 
   if (isLoading && articles.length === 0) {
     return (
@@ -109,13 +113,10 @@ export default function FinancialNews() {
 
                   </div>
                 </div>
-              </Card>
-            ))
-          ) : (
-            <div className="text-center py-8 text-muted-foreground">
-              {error ? `Error loading news: ${error.message}` : 'No news articles available'}
-            </div>
-          )}
+              </div>
+            </Card>
+          ))
+          }
         </div>
 
         <div className="mt-4 pt-3 border-t border-gray-200">

@@ -45,7 +45,7 @@ export default function RootLayout({
               </AuthProvider>
             </TooltipProvider>
           </ReactQueryProvider>
-        {/* </div> */}
+        </div>
       </body>
     </html>
   );

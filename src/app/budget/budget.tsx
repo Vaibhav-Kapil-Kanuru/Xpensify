@@ -244,10 +244,9 @@ const Budget: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-primary/5 to-accent/10">
+    <div className="min-h-screen mac-bg">
       <DashboardNav />
-
-      <main className="container mx-auto px-4 py-8">
+      <main className="container mx-auto px-4 py-8 pt-24">
         <div className="mb-8 animate-fade-in">
           <h2 className="text-3xl font-bold mb-2">Budget Tracker 💰</h2>
           <p className="text-muted-foreground">
@@ -257,30 +256,15 @@ const Budget: React.FC = () => {
 
         <div className="grid lg:grid-cols-4 gap-6 mb-6">
           {/* Total Income */}
-          {/* <Card className="glass-card p-6">
+          <Card className="glass-card p-6">
             <div className="flex items-center justify-between mb-2">
               <h3 className="text-sm text-muted-foreground">Total Income</h3>
-              <ArrowUpCircle className="w-5 h-5 text-green-500" />
+              <ArrowUpCircle className="w-5 h-5 text-blue-500" />
             </div>
-            <p className="text-3xl font-bold text-green-600">
-              ₹{totalIncome.toLocaleString()}
-            </p>
-          </Card> */}
-          <Card className="p-6 md:p-8 backdrop-blur-md bg-white/5 border border-white/10 
-rounded-2xl transition-transform duration-500 ease-in hover:scale-[1.01] overflow-hidden">
-            <div className="flex items-center justify-between mb-2">
-              <h3 className="text-sm text-slate-300 font-medium">
-                Total Income
-              </h3>
-              <ArrowUpCircle className="w-5 h-5 text-emerald-400" />
-            </div>
-
-            <p className="text-3xl font-bold text-emerald-300 drop-shadow-[0_0_6px_rgba(16,185,129,0.45)]">
+            <p className="text-3xl font-bold text-blue-600">
               ₹{totalIncome.toLocaleString()}
             </p>
           </Card>
-
-
 
 
           {/* Total Expenses */}
@@ -300,7 +284,7 @@ rounded-2xl transition-transform duration-500 ease-in hover:scale-[1.01] overflo
               <h3 className="text-sm text-muted-foreground">Net Balance</h3>
               <TrendingUp className="w-5 h-5 text-accent" />
             </div>
-            <p className={`text-3xl font-bold ${netBalance >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+            <p className={`text-3xl font-bold ${netBalance >= 0 ? 'text-blue-600' : 'text-red-600'}`}>
               ₹{netBalance.toLocaleString()}
             </p>
           </Card>
@@ -438,7 +422,7 @@ rounded-2xl transition-transform duration-500 ease-in hover:scale-[1.01] overflo
                   <div key={t.id} className="flex items-center justify-between p-3 rounded-lg bg-accent/5">
                     <div className="flex items-center gap-3">
                       {isIncome ? (
-                        <ArrowUpCircle className="w-5 h-5 text-green-500" />
+                        <ArrowUpCircle className="w-5 h-5 text-blue-500" />
                       ) : (
                         <ArrowDownCircle className="w-5 h-5 text-red-500" />
                       )}
@@ -449,7 +433,7 @@ rounded-2xl transition-transform duration-500 ease-in hover:scale-[1.01] overflo
                         </p>
                       </div>
                     </div>
-                    <p className={`font-semibold ${isIncome ? 'text-green-600' : 'text-red-600'}`}>
+                    <p className={`font-semibold ${isIncome ? 'text-blue-600' : 'text-red-600'}`}>
                       {isIncome ? '+' : '-'}₹{Number(t.amount).toLocaleString()}
                     </p>
                   </div>
@@ -514,7 +498,7 @@ rounded-2xl transition-transform duration-500 ease-in hover:scale-[1.01] overflo
                 <h4 className="font-semibold mb-2">Recommendations</h4>
                 <ul className="space-y-2">
                   {analysis.recommendations.map((rec: string, i: number) => (
-                    <li key={i} className="flex items-start gap-2 text-green-600">
+                    <li key={i} className="flex items-start gap-2 text-blue-600">
                       <span>✓</span>
                       <span>{rec}</span>
                     </li>
